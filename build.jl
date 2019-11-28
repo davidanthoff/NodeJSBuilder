@@ -72,7 +72,7 @@ mktempdir() do temp_path
             # Make sure everything is in the root folder
             files = readdir(artifact_dir)
             if length(files)==1
-                run(Cmd(`mv $(files[1])/* $(files[1])/.* .`, dir=artifact_dir))
+                run(Cmd(`mv ./$(files[1])/* ./$(files[1])/.* .`, dir=artifact_dir))
                 rm(joinpath(artifact_dir, files[1]), force=true)
             end
         end
