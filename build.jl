@@ -64,7 +64,7 @@ mktempdir() do temp_path
 
         product_hash = create_artifact() do artifact_dir
             if extension(download_filename) == "zip"
-                run(Cmd(`unzip $download_filename -C $artifact_dir`))
+                run(Cmd(`unzip $download_filename -d $artifact_dir`))
             else
                 run(Cmd(`tar -xvf $download_filename -C $artifact_dir`))
             end
