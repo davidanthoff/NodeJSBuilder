@@ -4,7 +4,7 @@ using URIParser, FilePaths
 
 pkgname = "NodeJS"
 version = v"12.13.1"
-build = 2
+build = 3
 
 build_path = joinpath(@__DIR__, "build")
 
