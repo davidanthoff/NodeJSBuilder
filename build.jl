@@ -4,6 +4,7 @@ using URIParser, FilePaths
 
 pkgname = "NodeJS"
 version = v"12.13.1"
+build = 0
 
 build_path = joinpath(@__DIR__, "build")
 
@@ -42,17 +43,17 @@ mktempdir() do temp_path
 
     for platform in platforms
         if platform isa Windows && arch(platform)==:x86_64
-            download_url = "https://nodejs.org/dist/v12.13.1/node-v12.13.1-win-x64.zip"
+            download_url = "https://nodejs.org/dist/v$version/node-v$version-win-x64.zip"
         elseif platform isa Windows && arch(platform)==:i686
-            download_url = "https://nodejs.org/dist/v12.13.1/node-v12.13.1-win-x86.zip"
+            download_url = "https://nodejs.org/dist/v$version/node-v$version-win-x86.zip"
         elseif platform isa MacOS
-            download_url = "https://nodejs.org/dist/v12.13.1/node-v12.13.1-darwin-x64.tar.gz"
+            download_url = "https://nodejs.org/dist/v$version/node-v$version-darwin-x64.tar.gz"
         elseif platform isa Linux && arch(platform)==:x86_64
-            download_url = "https://nodejs.org/dist/v12.13.1/node-v12.13.1-linux-x64.tar.xz"
+            download_url = "https://nodejs.org/dist/v$version/node-v$version-linux-x64.tar.xz"
         elseif platform isa Linux && arch(platform)==:armv7l
-            download_url = "https://nodejs.org/dist/v12.13.1/node-v12.13.1-linux-armv7l.tar.xz"
+            download_url = "https://nodejs.org/dist/v$version/node-v$version-linux-armv7l.tar.xz"
         elseif platform isa Linux && arch(platform)==:powerpc64le
-            download_url = "https://nodejs.org/dist/v12.13.1/node-v12.13.1-linux-ppc64le.tar.xz"
+            download_url = "https://nodejs.org/dist/v$version/node-v$version-linux-ppc64le.tar.xz"
         else
             continue
         end
@@ -62,10 +63,14 @@ mktempdir() do temp_path
         download(download_url, download_filename)
 
         product_hash = create_artifact() do artifact_dir
-            run(Cmd(`tar -xvf $download_filename -C $artifact_dir`))
+            if extension(download_filename) == "zip"
+                run(Cmd(`unzip $download_filename -C $artifact_dir`))
+            else
+                run(Cmd(`tar -xvf $download_filename -C $artifact_dir`))
+            end
         end
 
-        archive_filename = "$pkgname-$version-$(triplet(platform)).tar.gz"
+        archive_filename = "$pkgname-$version+$(build)-$(triplet(platform)).tar.gz"
 
         download_hash = archive_artifact(product_hash, joinpath(build_path, archive_filename))
 
