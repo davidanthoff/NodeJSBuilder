@@ -72,7 +72,10 @@ mktempdir() do temp_path
             # Make sure everything is in the root folder
             files = readdir(artifact_dir)
             if length(files)==1
-                run(Cmd(`mv ./$(files[1])/* ./$(files[1])/.* .`, dir=artifact_dir))
+                stuff_to_move = readdir(joinpath(artifact_dir, files[1]))
+                for f in stuff_to_move
+                    mv(joinpath(artifact_dir, files[1], f), joinpath(artifact_dir, f))
+                end
                 rm(joinpath(artifact_dir, files[1]), force=true)
             end
         end
