@@ -84,6 +84,6 @@ mktempdir() do temp_path
 
         download_hash = archive_artifact(product_hash, joinpath(build_path, archive_filename))
 
-        bind_artifact!(artifact_toml, "nodejs_app", product_hash, platform=platform, force=true, download_info=Tuple[("https://github.com/davidanthoff/NodeJSBuilder/releases/download/v$(URIParser.escape(join(string(version), "+", build))/$archive_filename", download_hash)])
+        bind_artifact!(artifact_toml, "nodejs_app", product_hash, platform=platform, force=true, download_info=Tuple[("https://github.com/davidanthoff/NodeJSBuilder/releases/download/v$(URIParser.escape(join(string(version), "+", build)))/$archive_filename", download_hash)])
     end
 end
