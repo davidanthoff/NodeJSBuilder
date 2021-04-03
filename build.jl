@@ -83,9 +83,13 @@ mktempdir() do temp_path
                 for (root, dirs, files) in walkdir(artifact_dir) 
                     cd(root) do
                         for file in files
+                            if endswith(file, ".exe") || endswith(file, ".dll") || endswith(file, ".cmd")
                             run(`chmod +x {$file}`)
                         end
                     end
+                end
+                cd(root) do
+                    run(`chmod +x {node.exe,npm,npm.cmd,npx,npx.cmd}`)
                 end
             end
         end
