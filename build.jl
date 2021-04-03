@@ -78,6 +78,12 @@ mktempdir() do temp_path
                 end
                 rm(joinpath(artifact_dir, files[1]), force=true)
             end
+
+            if platform isa Windows
+                cd(artifact_dir) do
+                    run(`chmod +x -R \*`)
+                end
+            end
         end
 
         archive_filename = "$pkgname-$version+$(build)-$(triplet(platform)).tar.gz"
