@@ -82,7 +82,9 @@ mktempdir() do temp_path
             if platform isa Windows
                 for (root, dirs, files) in walkdir(artifact_dir) 
                     cd(root) do
-                        run(`chmod +x \*`)
+                        for file in files
+                            run(`chmod +x "'$file'"`)
+                        end
                     end
                 end
             end
