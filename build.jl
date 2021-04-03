@@ -89,9 +89,6 @@ mktempdir() do temp_path
                         end
                     end
                 end
-                cd(artifact_dir) do
-                    run(`chmod +x {node.exe,npm,npm.cmd,npx,npx.cmd}`)
-                end
             end
         end
 
