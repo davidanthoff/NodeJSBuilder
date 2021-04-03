@@ -84,7 +84,7 @@ mktempdir() do temp_path
                     cd(root) do
                         for file in files
                             if endswith(file, ".exe") || endswith(file, ".dll") || endswith(file, ".cmd")
-                                run(`chmod +x {$file}`)
+                                run(`chmod +x $file`)
                             end
                         end
                     end
