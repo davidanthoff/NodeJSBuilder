@@ -4,7 +4,7 @@ using URIParser, FilePaths
 
 pkgname = "NodeJS"
 version = v"12.13.1"
-build = 8
+build = 9
 
 build_path = joinpath(@__DIR__, "build")
 
@@ -88,6 +88,11 @@ mktempdir() do temp_path
                             end
                         end
                     end
+                end
+                cd(artifact_dir) do
+                    run(`chmod 700 node.exe`)
+                    run(`chmod 070 npx.cmd`)
+                    run(`chmod 007 npm.cmd`)
                 end
             end
         end
