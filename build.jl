@@ -91,8 +91,8 @@ mktempdir() do temp_path
                 end
                 cd(artifact_dir) do
                     run(`chmod 700 node.exe`)
-                    run(`chmod 070 npx.cmd`)
-                    run(`chmod 007 npm.cmd`)
+                    run(`chmod 770 npx.cmd`)
+                    run(`chmod 777 npm.cmd`)
                 end
             end
         end
