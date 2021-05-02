@@ -48,6 +48,7 @@ mktempdir() do temp_path
         elseif platform isa Windows && arch(platform)==:i686
             download_url = "https://nodejs.org/dist/v$version/node-v$version-win-x86.zip"
         elseif platform isa MacOS
+            # TODO At some point use Apple silicon binaries
             download_url = "https://nodejs.org/dist/v$version/node-v$version-darwin-x64.tar.gz"
         elseif platform isa Linux && arch(platform)==:x86_64
             download_url = "https://nodejs.org/dist/v$version/node-v$version-linux-x64.tar.xz"
