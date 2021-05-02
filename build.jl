@@ -4,7 +4,7 @@ using URIParser, FilePaths
 
 pkgname = "NodeJS"
 version = v"12.22.1"
-build = 1
+build = 2
 
 build_path = joinpath(@__DIR__, "build")
 
@@ -32,7 +32,7 @@ platforms = [
 
     # BSDs
     MacOS(:x86_64),
-    # MacOS(:aarch64),
+    MacOS(:aarch64),
     FreeBSD(:x86_64),
 
     # Windows
