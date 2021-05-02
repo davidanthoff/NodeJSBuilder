@@ -85,16 +85,11 @@ mktempdir() do temp_path
                     cd(root) do
                         for file in files
                             if endswith(file, ".exe") || endswith(file, ".dll") || endswith(file, ".cmd")
-                                run(`chmod u+x $file`)
+                                run(`chmod +x $file`)
                             end
                         end
                     end
-                end
-                cd(artifact_dir) do
-                    run(`chmod 700 node.exe`)
-                    run(`chmod 770 npx.cmd`)
-                    run(`chmod 777 npm.cmd`)
-                end
+                end                
             end
         end
 
