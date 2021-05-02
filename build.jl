@@ -3,8 +3,8 @@ using Pkg.BinaryPlatforms
 using URIParser, FilePaths
 
 pkgname = "NodeJS"
-version = v"12.13.1"
-build = 10
+version = v"12.22.1"
+build = 0
 
 build_path = joinpath(@__DIR__, "build")
 
